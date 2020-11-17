@@ -2,4 +2,4 @@
 help please
 
 # please help
-he is keeping me kaptive
+he is keeping me captive
