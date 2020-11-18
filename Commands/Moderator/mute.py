@@ -20,7 +20,7 @@ class MyCog(commands.Cog):
                 if user and get(grls,name="Muted"):
                     role = get(grls,name="Muted")
                     await user.add_roles(role)
-                    await ctx.send("xd dude got muted lol ("+user.display_name+")")
+                    await ctx.send("User Muted ("+user.display_name+")")
                 else:
                     await ctx.send("mention a user plz <3 (.kick @BigBean)")
                 return None

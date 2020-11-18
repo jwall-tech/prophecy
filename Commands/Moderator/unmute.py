@@ -8,17 +8,19 @@ class MyCog(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def kick(self,ctx,user: discord.Member):
+    async def unmute(self,ctx,user: discord.Member):
         os.getcwd()
         file = json.load(open("roles.json","r"))
         moderatorRoleIDs = file["mod"]
         usr = ctx.author
         rls = usr.roles
+        grls = ctx.guild.roles
         for rl in rls:
             if str(rl.id) in moderatorRoleIDs:
-                if user:
-                    await user.kick()
-                    await ctx.send("User: "+user.display_name+" has been kicked")
+                if user and get(grls,name="Muted"):
+                    role = get(grls,name="Muted")
+                    await user.remove_roles(role)
+                    await ctx.send("User Unmuted ("+user.display_name+")")
                 else:
                     await ctx.send("mention a user plz <3 (.kick @BigBean)")
                 return None

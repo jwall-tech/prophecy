@@ -25,5 +25,9 @@ for catagory in dirs:
 
             cmdsTAB[catagory].append(file)
 
+async def on_command_error(self,ctx,error=""):
+    pass
+
+bot.add_listener(on_command_error)
 
 bot.run(Token)

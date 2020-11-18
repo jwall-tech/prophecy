@@ -8,18 +8,17 @@ class MyCog(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def kick(self,ctx,user: discord.Member):
+    async def lock(self,ctx):
         os.getcwd()
         file = json.load(open("roles.json","r"))
-        moderatorRoleIDs = file["mod"]
+        moderatorRoleIDs = file["admin"]
         usr = ctx.author
         rls = usr.roles
+        grls = ctx.guild.default_role
         for rl in rls:
             if str(rl.id) in moderatorRoleIDs:
-                if user:
-                    await user.kick()
-                    await ctx.send("User: "+user.display_name+" has been kicked")
-                else:
-                    await ctx.send("mention a user plz <3 (.kick @BigBean)")
+                channel = ctx.channel
+                await channel.set_permissions(grls,send_messages=False)
+                await ctx.send("Channel Locked")
                 return None
         await ctx.send("You cant do that noob!")

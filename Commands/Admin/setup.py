@@ -8,18 +8,18 @@ class MyCog(commands.Cog):
         self.bot = bot
     
     @commands.command()
-    async def ban(self,ctx,user: discord.Member):
+    async def setup(self,ctx):
         os.getcwd()
         file = json.load(open("roles.json","r"))
         moderatorRoleIDs = file["mod"]
+        channels = ctx.guild.channels
         usr = ctx.author
+        grls = ctx.guild.roles
         rls = usr.roles
         for rl in rls:
             if str(rl.id) in moderatorRoleIDs:
-                if user:
-                    await user.ban()
-                    await ctx.send("User: "+user.display_name+" was banned xd lol")
-                else:
-                    await ctx.send("mention a user plz <3 (.kick @BigBean)")
+                for chan in channels:
+                    role = get(grls,name="Muted")
+                    await chan.set_permissions(role,send_messages=False)
                 return None
         await ctx.send("You cant do that noob!")
