@@ -3,7 +3,7 @@ from discord.ext import commands
 from importlib import import_module
 import os
 
-Token = "Nzc4MzIzODMxMDg1NDY1NjMw.X7QUjQ.MeB9cPbb8qIX402rZ5giO5wix0w"
+Token = ""
 
 bot = commands.Bot(command_prefix=".")
 
